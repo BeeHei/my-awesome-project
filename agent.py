@@ -41,11 +41,24 @@ class WebAgent:
         self.logs.append(decision)
         print(f"[{self.name}] Decision: {decision}")
 
+    def run_multiple_tasks(self, urls):
+        print(f"\n--- [{self.name}] Starting mass cehck ---")
+        for url in urls:
+            self.run_task(url)
+        print(f"---Checking complete. Logs summary: {len(self.logs)} ---\n")
+
 
 # Running our first agent
 if __name__ == "__main__":
     my_agent = WebAgent(name="Watcher -01")
 
-    # Giving agent a task
-    my_agent.run_task("https://google.com")
-    my_agent.run_task("https://google.com/non-existent-page")
+    # Creating list of sites for checking
+    sites_to_check = [
+        "https://google.com",
+        "https://github.com",
+        "https://yandex.ru",
+        "https://google.com/error-page",
+    ]
+
+    # Launching mass check
+    my_agent.run_multiple_tasks(sites_to_check)
