@@ -29,7 +29,7 @@ class WebAgent:
         if status == 200:
             decision = "All is great! Continue watching."
 
-        elif status == 400:
+        elif status == 404:
             decision = "Page not found. Check the URL."
 
         else:
@@ -47,6 +47,11 @@ class WebAgent:
             self.run_task(url)
         print(f"---Checking complete. Logs summary: {len(self.logs)} ---\n")
 
+    def show_logs(self):
+        print("--- Agent's work history ---")
+        for log in self.logs:
+            print(log)
+
 
 # Running our first agent
 if __name__ == "__main__":
@@ -62,3 +67,4 @@ if __name__ == "__main__":
 
     # Launching mass check
     my_agent.run_multiple_tasks(sites_to_check)
+    my_agent.show_logs()
